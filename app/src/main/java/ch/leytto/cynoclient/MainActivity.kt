@@ -1,9 +1,7 @@
 package ch.leytto.cynoclient
 
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -19,7 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,7 +41,8 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+            R.id.nav_clients,
+        ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 

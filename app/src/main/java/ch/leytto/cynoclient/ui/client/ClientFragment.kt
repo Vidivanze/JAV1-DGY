@@ -1,4 +1,4 @@
-package ch.leytto.cynoclient.ui.home
+package ch.leytto.cynoclient.ui.client
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,24 +12,26 @@ import androidx.recyclerview.widget.RecyclerView
 import ch.leytto.cynoclient.ClientListAdapter
 import ch.leytto.cynoclient.CynoClientApplication
 import ch.leytto.cynoclient.R
+import ch.leytto.cynoclient.db.entities.Client
 import ch.leytto.cynoclient.viewmodels.ClientViewModel
+import ch.leytto.cynoclient.viewmodels.DogViewModel
 import ch.leytto.cynoclient.viewmodels.ViewModelFactory
 
-class HomeFragment : Fragment() {
+class ClientFragment : Fragment() {
 
     private val clientViewModel: ClientViewModel by viewModels {
         ViewModelFactory((requireActivity().application as CynoClientApplication).clientRepository)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_clients_list, container, false)
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.client_recyclerview)
         val adapter = ClientListAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        clientViewModel.AllClients.observe(viewLifecycleOwner) { clients ->
+        clientViewModel.AllClients.observe(viewLifecycleOwner) { clients: List<Client> ->
             clients.let { adapter.submitList(it) }
         }
 
