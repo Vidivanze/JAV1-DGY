@@ -14,7 +14,7 @@
             android:title="@string/menu_dogs" />
         <item
             android:id="@+id/nav_diseases"
-            android:icon="@android:drawable/ic_menu_compass"
+            android:icon="@drawable/ic_baseline_coronavirus_24"
             android:title="@string/menu_diseases" />
     </group>
 </menu>
