@@ -18,19 +18,19 @@
         <TextView
             android:id="@+id/first_name_header"
             android:padding="3dip"
-            android:text="Prénom"
+            android:text="@string/first_name"
         />
 
         <TextView
             android:id="@+id/last_name_header"
             android:padding="3dip"
-            android:text="Nom"
+            android:text="@string/last_name"
         />
 
         <TextView
             android:id="@+id/contact_info_header"
             android:padding="3dip"
-            android:text="Contact"
+            android:text="@string/contact_info"
         />
     </TableRow>
 </TableLayout>

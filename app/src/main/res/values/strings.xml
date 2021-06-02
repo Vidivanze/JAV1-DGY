@@ -14,4 +14,7 @@
     <string name="content_description_dark_mode">Changer vers le mode nuit</string>
     <string name="menu_dogs">Chiens</string>
     <string name="menu_diseases">Maladies</string>
+    <string name="first_name">Prénom</string>
+    <string name="last_name">Nom</string>
+    <string name="contact_info">Contact</string>
 </resources>
