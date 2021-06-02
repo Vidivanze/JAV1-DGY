@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_diseases"
-        android:name="ch.leytto.cynoclient.ui.slideshow.SlideshowFragment"
+        android:name="ch.leytto.cynoclient.ui.disease.DiseaseFragment"
         android:label="@string/menu_diseases"
         tools:layout="@layout/fragment_diseases_list" />
 </navigation>
