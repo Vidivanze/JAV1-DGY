@@ -2,9 +2,7 @@ package ch.leytto.cynoclient.model
 
 import androidx.annotation.WorkerThread
 import ch.leytto.cynoclient.db.dao.ClientDao
-import ch.leytto.cynoclient.db.dao.DogDao
 import ch.leytto.cynoclient.db.entities.Client
-import ch.leytto.cynoclient.db.entities.Dog
 import kotlinx.coroutines.flow.Flow
 
 class ClientRepository(private val clientDao: ClientDao) : AbstractRepository() {
@@ -21,4 +19,10 @@ class ClientRepository(private val clientDao: ClientDao) : AbstractRepository() 
     suspend fun insert(client: Client) {
         clientDao.insert(client)
     }
+
+    @WorkerThread
+    fun getClientById(id: Int){
+        clientDao.getClientById(id)
+    }
+
 }
