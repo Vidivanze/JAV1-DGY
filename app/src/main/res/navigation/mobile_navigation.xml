@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_clients">
+    app:startDestination="@id/nav_clients">
 
     <fragment
         android:id="@+id/nav_clients"
         android:name="ch.leytto.cynoclient.ui.client.ClientFragment"
         android:label="@string/menu_clients"
-        tools:layout="@layout/fragment_clients_list" />
+        tools:layout="@layout/fragment_clients_list" >
+        <action
+            android:id="@+id/action_nav_clients_to_clientDetails"
+            app:destination="@id/clientDetails" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_dogs"
@@ -22,4 +26,15 @@
         android:name="ch.leytto.cynoclient.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_diseases"
         tools:layout="@layout/fragment_diseases_list" />
+    <fragment
+        android:id="@+id/clientDetails"
+        android:name="ch.leytto.cynoclient.ui.client.ClientDetailsFragment"
+        android:label="fragment_client_details"
+        tools:layout="@layout/fragment_client_details">
+            <argument
+                android:name="ARG_CLIENT_ID"
+                app:argType="string"
+                android:defaultValue=""
+                />
+    </fragment>
 </navigation>

@@ -17,4 +17,12 @@
     <string name="first_name">Prénom</string>
     <string name="last_name">Nom</string>
     <string name="contact_info">Contact</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="client_header_contacts">Contact</string>
+    <string name="client_header_dogs">Chiens</string>
+    <string name="no_dogs">Aucun chien pour ce client</string>
+
+    <string name="full_name_format">%s %s</string>
+    <string name="address_format">%s, %d %s</string>
 </resources>
