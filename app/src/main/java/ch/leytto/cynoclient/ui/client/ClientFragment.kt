@@ -29,6 +29,8 @@ class ClientFragment : Fragment() {
 
         val clientsTable = root.findViewById<TableLayout>(R.id.clients_table)
 
+        clientsTable.removeAllViews()
+
         clientViewModel.AllClients.observe(viewLifecycleOwner) { clients: List<Client> ->
             clients.forEach {
                 val row = LayoutInflater.from(context).inflate(R.layout.clients_list_row, null)
@@ -39,8 +41,6 @@ class ClientFragment : Fragment() {
 
                 row.isClickable = true
                 row.setOnClickListener {
-                    // Go to client client.id page
-                    //view.findNavController().navigate(R.id.)
                     val bundle = bundleOf("ARG_CLIENT_ID" to client.id.toString())
                     NavHostFragment.findNavController(this).navigate(R.id.action_nav_clients_to_clientDetails, bundle);
                 }
