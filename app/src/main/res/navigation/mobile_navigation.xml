@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/clientDetails"
         android:name="ch.leytto.cynoclient.ui.client.ClientDetailsFragment"
-        android:label="fragment_client_details"
+        android:label="@string/menu_clients_details"
         tools:layout="@layout/fragment_client_details">
             <argument
                 android:name="ARG_CLIENT_ID"
