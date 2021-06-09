@@ -14,30 +14,33 @@ import ch.leytto.cynoclient.viewmodels.ClientViewModel
 import ch.leytto.cynoclient.viewmodels.ViewModelFactory
 import android.widget.TableLayout
 import android.widget.TextView
+import ch.leytto.cynoclient.db.dao.ClientDao
+import ch.leytto.cynoclient.db.entities.relations.DogWithBreedAndClient
+import ch.leytto.cynoclient.model.ClientRepository
+import kotlinx.coroutines.flow.Flow
 
 class DogFragment : Fragment() {
 
     private val dogViewModel: DogViewModel by viewModels {
         ViewModelFactory((requireActivity().application as CynoClientApplication).dogRepository)
     }
-    private val clientViewModel: ClientViewModel by viewModels {
-        ViewModelFactory((requireActivity().application as CynoClientApplication).dogRepository)
-    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val root = inflater.inflate(R.layout.fragment_dogs_list, container, false)
 
         val dogsTable = root.findViewById<TableLayout>(R.id.dogs_table)
 
-        dogViewModel.AllDogs.observe(viewLifecycleOwner) { dogs ->
+        dogViewModel.dogWithBreedAndClient.observe(viewLifecycleOwner) { dogs ->
             dogs.forEach {
                 val row = LayoutInflater.from(context).inflate(R.layout.dogs_list_row, null)
-
-                row.findViewById<TextView>(R.id.name).text = it.noun
-                row.findViewById<TextView>(R.id.breed).text = it.breed.toString()
-                row.findViewById<TextView>(R.id.owner).text = it.idClient.toString()
-
-                dogsTable.addView(row);
+                row.findViewById<TextView>(R.id.name).text = it.dog.noun
+                row.findViewById<TextView>(R.id.breed).text = it.breed.noun
+                row.findViewById<TextView>(R.id.owner).text = it.client.firstname + " " + it.client.lastname
+                dogsTable.addView(row)
             }
         }
 

@@ -5,7 +5,7 @@ import androidx.room.Junction
 import androidx.room.Relation
 import ch.leytto.cynoclient.db.entities.*
 
-data class DogWithBreed(
+data class DogWithBreedAndClient(
     @Embedded val dog: Dog,
     @Relation(
         parentColumn = "breed",
@@ -16,6 +16,12 @@ data class DogWithBreed(
         parentColumn = "crossbreed",
         entityColumn = "id"
     )
-    val crossbreed: Breed?
+    val crossbreed: Breed?,
+
+    @Relation(
+        parentColumn = "id_client",
+        entityColumn = "id"
+    )
+    val client: Client
 ) {
 }
