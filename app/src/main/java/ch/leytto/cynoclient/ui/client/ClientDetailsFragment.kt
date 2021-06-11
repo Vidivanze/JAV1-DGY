@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import ch.leytto.cynoclient.CynoClientApplication
+import ch.leytto.cynoclient.DetailedDogListAdapter
 import ch.leytto.cynoclient.DogListAdapter
 import ch.leytto.cynoclient.R
 import ch.leytto.cynoclient.db.entities.relations.ClientWithLocalityAndDogWithBreedAndDiseases
@@ -42,7 +43,7 @@ class ClientDetailsFragment : Fragment() {
 
         clientViewModel.getClientWithLocalityAndDogWithBreedAndDiseases(paramClientId!!).observe(viewLifecycleOwner) { rel: ClientWithLocalityAndDogWithBreedAndDiseases ->
             val c = rel.client
-            val dogs = rel.dogs.map { it.dog }  // Flatten DogsWithBreedAndDiseases to Dog
+            val dogs = rel.dogs
 
             root.findViewById<TextView>(R.id.full_name).text =
                 getString(R.string.full_name_format, c.firstname, c.lastname)
@@ -69,7 +70,7 @@ class ClientDetailsFragment : Fragment() {
             }
             else {
                 val recyclerView = root.findViewById<RecyclerView>(R.id.dog_recyclerview)
-                val adapter = DogListAdapter()
+                val adapter = DetailedDogListAdapter()
                 recyclerView.adapter = adapter
 
                 adapter.submitList(dogs)
