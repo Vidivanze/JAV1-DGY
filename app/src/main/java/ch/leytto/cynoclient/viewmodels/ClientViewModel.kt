@@ -13,4 +13,10 @@ class ClientViewModel(private val repository: ClientRepository) : ViewModel() {
         repository.insert(client)
     }
 
+    fun getClientById(id: Int){
+        val clientById: Unit = repository.getClientById(id);
+        return clientById;
+
+    }
+
 }

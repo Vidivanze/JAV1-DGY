@@ -23,4 +23,7 @@ interface ClientDao {
 
     @Delete
     suspend fun deleteDogs(vararg clients: Client)
+
+    @Query("SELECT * FROM clients WHERE id=:id ")
+    fun getClientById(id: Int): Client
 }
