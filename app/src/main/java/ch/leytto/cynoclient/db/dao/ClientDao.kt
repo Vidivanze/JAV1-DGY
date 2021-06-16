@@ -25,7 +25,7 @@ interface ClientDao {
     fun getClient(id: String): LiveData<Client>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(client: Client)
+    suspend fun insert(client: Client) : Long
 
     @Update
     suspend fun updateDogs(vararg clients: Client)

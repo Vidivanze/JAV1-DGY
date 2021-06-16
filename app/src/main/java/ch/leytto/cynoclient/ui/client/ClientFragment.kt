@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +18,8 @@ import ch.leytto.cynoclient.R
 import ch.leytto.cynoclient.db.entities.Client
 import ch.leytto.cynoclient.viewmodels.ClientViewModel
 import ch.leytto.cynoclient.viewmodels.ViewModelFactory
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class ClientFragment : Fragment() {
 
@@ -46,6 +49,14 @@ class ClientFragment : Fragment() {
                 }
 
                 clientsTable.addView(row);
+            }
+        }
+
+        val fab: FloatingActionButton = root.findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            run {
+                NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_nav_clients_to_clientNew);
             }
         }
 

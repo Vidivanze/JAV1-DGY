@@ -14,8 +14,12 @@ class ClientViewModel(private val repository: ClientRepository) : ViewModel() {
 
     fun getClientWithLocalityAndDogWithBreedAndDiseases(id: String) : LiveData<ClientWithLocalityAndDogWithBreedAndDiseases> = repository.getClientWithLocalityAndDogWithBreedAndDiseases(id)
 
-    fun insert(client: Client) = viewModelScope.launch {
-        repository.insert(client)
+    fun insert(client: Client) : LiveData<Long> {
+        val res = MutableLiveData<Long>()
+        viewModelScope.launch {
+            val r = repository.insert(client)
+            res.postValue(r)
+        }
+        return res
     }
-
 }

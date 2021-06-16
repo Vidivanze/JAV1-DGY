@@ -30,7 +30,7 @@ class ClientRepository(private val clientDao: ClientDao) : AbstractRepository() 
     // off the main thread.
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(client: Client) {
-        clientDao.insert(client)
+    suspend fun insert(client: Client) : Long {
+        return clientDao.insert(client)
     }
 }
