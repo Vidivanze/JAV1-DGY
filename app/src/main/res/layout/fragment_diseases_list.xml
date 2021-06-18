@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="none"
@@ -12,9 +14,6 @@
         android:orientation="vertical">
 
         <TableLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:stretchColumns="*"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -30,8 +29,8 @@
                 <TextView
                     android:id="@+id/noun_header"
                     android:padding="3dip"
-                    android:text="Nom des maladies"
-                    />
+                    android:text="Nom des maladies :"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             </TableRow>
         </TableLayout>
