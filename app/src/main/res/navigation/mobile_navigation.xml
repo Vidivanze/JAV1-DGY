@@ -3,23 +3,80 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_clients">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="ch.leytto.cynoclient.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_clients"
+        android:name="ch.leytto.cynoclient.ui.client.ClientFragment"
+        android:label="@string/menu_clients"
+        tools:layout="@layout/fragment_clients_list" >
+        <action
+            android:id="@+id/action_nav_clients_to_clientDetails"
+            app:destination="@id/clientDetails" />
+        <action
+            android:id="@+id/action_nav_clients_to_clientNew"
+            app:destination="@id/clientNew" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="ch.leytto.cynoclient.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/clientDetails"
+        android:name="ch.leytto.cynoclient.ui.client.ClientDetailsFragment"
+        android:label="@string/menu_clients_details"
+        tools:layout="@layout/fragment_client_details">
+        <argument
+            android:name="ARG_CLIENT_ID"
+            app:argType="string"
+            android:defaultValue=""
+            />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="ch.leytto.cynoclient.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/clientNew"
+        android:name="ch.leytto.cynoclient.ui.client.ClientNewFragment"
+        android:label="@string/menu_clients_new"
+        tools:layout="@layout/fragment_client_new" >
+        <action
+            android:id="@+id/action_clientNew_to_clientDetails"
+            app:destination="@id/clientDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_dogs"
+        android:name="ch.leytto.cynoclient.ui.dog.DogFragment"
+        android:label="@string/menu_dogs"
+        tools:layout="@layout/fragment_dogs_list" />
+
+    <fragment
+        android:id="@+id/nav_diseases"
+        android:name="ch.leytto.cynoclient.ui.disease.DiseaseFragment"
+        android:label="@string/menu_diseases"
+        tools:layout="@layout/fragment_diseases_list" >
+        <action
+            android:id="@+id/action_nav_diseases_to_DiseaseDetails"
+            app:destination="@id/diseaseDetails" />
+        <action
+            android:id="@+id/action_nav_diseases_to_diseaseNew"
+            app:destination="@id/diseaseNew" />
+    </fragment>
+    <fragment
+        android:id="@+id/diseaseDetails"
+        android:name="ch.leytto.cynoclient.ui.disease.DiseaseDetailsFragment"
+        android:label="@string/menu_diseases_details"
+        tools:layout="@layout/fragment_disease_details">
+        <argument
+            android:name="ARG_DISEASE_ID"
+            app:argType="string"
+            android:defaultValue=""
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/diseaseNew"
+        android:name="ch.leytto.cynoclient.ui.disease.DiseaseNewFragment"
+        android:label="@string/menu_diseases_new"
+        tools:layout="@layout/fragment_disease_new" >
+        <action
+            android:id="@+id/action_diseaseNew_to_diseaseDetails"
+            app:destination="@id/diseaseDetails" />
+    </fragment>
+
 </navigation>

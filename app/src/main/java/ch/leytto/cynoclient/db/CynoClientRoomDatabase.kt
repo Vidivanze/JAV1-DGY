@@ -6,6 +6,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ch.leytto.cynoclient.db.dao.ClientDao
 import ch.leytto.cynoclient.db.dao.DogDao
+import ch.leytto.cynoclient.db.dao.DiseaseDao
+import ch.leytto.cynoclient.db.dao.LocalityDao
 import ch.leytto.cynoclient.db.entities.*
 import kotlinx.coroutines.CoroutineScope
 
@@ -15,8 +17,10 @@ import kotlinx.coroutines.CoroutineScope
 abstract class CynoClientRoomDatabase : RoomDatabase() {
 
     // DAOs
+    abstract fun diseaseDao(): DiseaseDao
     abstract fun dogDao(): DogDao
     abstract fun clientDao(): ClientDao
+    abstract  fun localityDao(): LocalityDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
