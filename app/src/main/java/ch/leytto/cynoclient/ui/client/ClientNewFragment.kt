@@ -51,7 +51,9 @@ class ClientNewFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
             var locId: Integer? = null;
             if (!npa.text.isNullOrEmpty()) {
-                locId = Integer(localityViewModel.getLocalityByZip(npa.text.toString()).id)
+                val loc = localityViewModel.getLocalityByZip(npa.text.toString())
+                if(loc != null)
+                    locId = Integer(loc.id)
             }
 
             withContext(Dispatchers.Main) {
