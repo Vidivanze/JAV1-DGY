@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import ch.leytto.cynoclient.model.AbstractRepository
 import ch.leytto.cynoclient.model.ClientRepository
 import ch.leytto.cynoclient.model.DogRepository
+import ch.leytto.cynoclient.model.DiseaseRepository
 import ch.leytto.cynoclient.model.LocalityRepository
 import java.lang.IllegalArgumentException
 
@@ -17,6 +18,10 @@ class ViewModelFactory(private val repository: AbstractRepository) : ViewModelPr
         else if (modelClass.isAssignableFrom(DogViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return DogViewModel(repository as DogRepository) as T
+        }
+        else if (modelClass.isAssignableFrom(DiseaseViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return DiseaseViewModel(repository as DiseaseRepository) as T
         }
         else if (modelClass.isAssignableFrom((LocalityViewModel::class.java))) {
             @Suppress("UNCHECKED_CAST")
