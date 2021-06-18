@@ -10,7 +10,9 @@
     android:layout_height="match_parent"
     android:padding="25px"
     tools:context=".ui.client.ClientDetailsFragment">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -192,6 +194,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
+    </ScrollView>
 </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
