@@ -4,18 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import ch.leytto.cynoclient.ClientListAdapter
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import ch.leytto.cynoclient.CynoClientApplication
 import ch.leytto.cynoclient.R
 import ch.leytto.cynoclient.db.entities.Client
 import ch.leytto.cynoclient.viewmodels.ClientViewModel
-import ch.leytto.cynoclient.viewmodels.DogViewModel
 import ch.leytto.cynoclient.viewmodels.ViewModelFactory
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class ClientFragment : Fragment() {
 
@@ -26,13 +30,34 @@ class ClientFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_clients_list, container, false)
 
-        val recyclerView = root.findViewById<RecyclerView>(R.id.client_recyclerview)
-        val adapter = ClientListAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        val clientsTable = root.findViewById<TableLayout>(R.id.clients_table)
+
+        clientsTable.removeAllViews()
 
         clientViewModel.AllClients.observe(viewLifecycleOwner) { clients: List<Client> ->
-            clients.let { adapter.submitList(it) }
+            clients.forEach {
+                val row = LayoutInflater.from(context).inflate(R.layout.clients_list_row, null)
+                val client = it;
+                row.findViewById<TextView>(R.id.first_name).text = client.firstname
+                row.findViewById<TextView>(R.id.last_name).text = client.lastname
+                row.findViewById<TextView>(R.id.contact_info).text = client.email
+
+                row.isClickable = true
+                row.setOnClickListener {
+                    val bundle = bundleOf("ARG_CLIENT_ID" to client.id.toString())
+                    NavHostFragment.findNavController(this).navigate(R.id.action_nav_clients_to_clientDetails, bundle);
+                }
+
+                clientsTable.addView(row);
+            }
+        }
+
+        val fab: FloatingActionButton = root.findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            run {
+                NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_nav_clients_to_clientNew);
+            }
         }
 
         return root

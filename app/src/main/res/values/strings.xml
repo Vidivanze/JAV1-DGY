@@ -14,4 +14,25 @@
     <string name="content_description_dark_mode">Changer vers le mode nuit</string>
     <string name="menu_dogs">Chiens</string>
     <string name="menu_diseases">Maladies</string>
+    <string name="first_name">Prénom</string>
+    <string name="last_name">Nom</string>
+    <string name="contact_info">Contact</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="client_header_contacts">Contact</string>
+    <string name="client_header_dogs">Chiens</string>
+    <string name="no_dogs">Aucun chien pour ce client</string>
+
+    <string name="full_name_format">%s %s</string>
+    <string name="address_format">%s, %d %s</string>
+    <string name="menu_clients_details">Détails du client</string>
+    <string name="menu_clients_new">Nouveau client</string>
+    <string name="header_new_client">Nouveau client</string>
+    <string name="female">Femme</string>
+    <string name="male">Homme</string>
+    <string name="header_gender">Genre</string>
+    <string name="email">Email</string>
+    <string name="phone">Téléphone</string>
+    <string name="address">Adresse</string>
+    <string name="locality">NPA</string>
 </resources>
