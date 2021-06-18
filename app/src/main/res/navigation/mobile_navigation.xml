@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/diseaseDetails"
         android:name="ch.leytto.cynoclient.ui.disease.DiseaseDetailsFragment"
-        android:label="fragment_disease_details"
+        android:label="@string/menu_diseases_details"
         tools:layout="@layout/fragment_disease_details">
         <argument
             android:name="ARG_DISEASE_ID"
