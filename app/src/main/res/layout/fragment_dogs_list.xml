@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.dog.DogFragment">
+    android:stretchColumns="*"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.dog.DogFragment"
+    android:id="@+id/dogs_table"
+>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dog_recyclerview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:listitem="@layout/dog_adapter"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TableRow
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <TextView
+            android:id="@+id/first_name_header"
+            android:padding="3dip"
+            android:text="Prénom"
+            />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/breed_header"
+            android:padding="3dip"
+            android:text="Race"
+            />
+
+        <TextView
+            android:id="@+id/owner_header"
+            android:padding="3dip"
+            android:text="Propriétaire"
+            />
+    </TableRow>
+</TableLayout>

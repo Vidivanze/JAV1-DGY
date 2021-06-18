@@ -7,13 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ch.leytto.cynoclient.CynoClientApplication
-import ch.leytto.cynoclient.DogListAdapter
 import ch.leytto.cynoclient.R
 import ch.leytto.cynoclient.viewmodels.DogViewModel
+import ch.leytto.cynoclient.viewmodels.ClientViewModel
 import ch.leytto.cynoclient.viewmodels.ViewModelFactory
+import android.widget.TableLayout
+import android.widget.TextView
+import ch.leytto.cynoclient.db.dao.ClientDao
+import ch.leytto.cynoclient.db.entities.relations.DogWithBreedAndClient
+import ch.leytto.cynoclient.model.ClientRepository
+import kotlinx.coroutines.flow.Flow
 
 class DogFragment : Fragment() {
 
@@ -21,16 +25,23 @@ class DogFragment : Fragment() {
         ViewModelFactory((requireActivity().application as CynoClientApplication).dogRepository)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val root = inflater.inflate(R.layout.fragment_dogs_list, container, false)
 
-        val recyclerView = root.findViewById<RecyclerView>(R.id.dog_recyclerview)
-        val adapter = DogListAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        val dogsTable = root.findViewById<TableLayout>(R.id.dogs_table)
 
-        dogViewModel.AllDogs.observe(viewLifecycleOwner) { dogs ->
-            dogs.let { adapter.submitList(it) }
+        dogViewModel.dogWithBreedAndClient.observe(viewLifecycleOwner) { dogs ->
+            dogs.forEach {
+                val row = LayoutInflater.from(context).inflate(R.layout.dogs_list_row, null)
+                row.findViewById<TextView>(R.id.name).text = it.dog.noun
+                row.findViewById<TextView>(R.id.breed).text = it.breed.noun
+                row.findViewById<TextView>(R.id.owner).text = it.client.firstname + " " + it.client.lastname
+                dogsTable.addView(row)
+            }
         }
 
         return root

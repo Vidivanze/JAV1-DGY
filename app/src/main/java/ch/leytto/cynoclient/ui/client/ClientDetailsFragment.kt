@@ -13,7 +13,6 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import ch.leytto.cynoclient.CynoClientApplication
 import ch.leytto.cynoclient.DetailedDogListAdapter
-import ch.leytto.cynoclient.DogListAdapter
 import ch.leytto.cynoclient.R
 import ch.leytto.cynoclient.db.entities.relations.ClientWithLocalityAndDogWithBreedAndDiseases
 import ch.leytto.cynoclient.viewmodels.ClientViewModel
