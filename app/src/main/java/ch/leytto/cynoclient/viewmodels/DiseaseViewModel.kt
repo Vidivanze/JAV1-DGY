@@ -9,6 +9,8 @@ class DiseaseViewModel(private val repository: DiseaseRepository) : ViewModel() 
 
     val AllDiseases: LiveData<List<Disease>> = repository.allDiseases.asLiveData()
 
+    fun getDisease(id: String) : LiveData<Disease> = repository.find(id)
+
     fun insert(disease: Disease) = viewModelScope.launch {
         repository.insert(disease)
     }

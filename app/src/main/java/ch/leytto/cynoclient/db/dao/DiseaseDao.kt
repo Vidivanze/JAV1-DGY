@@ -1,5 +1,6 @@
 package ch.leytto.cynoclient.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import ch.leytto.cynoclient.db.entities.Disease
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +12,7 @@ interface DiseaseDao {
     fun getDiseases(): Flow<List<Disease>>
 
     @Query("SELECT * FROM diseases WHERE id = :id")
-    suspend fun getDiseases(id: Int): Disease
+    fun getDisease(id: String): LiveData<Disease>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(disease: Disease)

@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import ch.leytto.cynoclient.CynoClientApplication
 import ch.leytto.cynoclient.R
 import ch.leytto.cynoclient.viewmodels.DiseaseViewModel
@@ -29,7 +32,16 @@ class DiseaseFragment : Fragment() {
             diseases.forEach {
                 val row = LayoutInflater.from(context).inflate(R.layout.diseases_list_row, null)
 
-                row.findViewById<TextView>(R.id.noun).text = it.noun
+                val disease = it;
+                row.findViewById<TextView>(R.id.noun).text = disease.noun
+
+                row.isClickable = true
+                row.setOnClickListener {
+                    // Go to client client.id page
+                    //view.findNavController().navigate(R.id.)
+                    val bundle = bundleOf("ARG_DISEASE_ID" to disease.id.toString())
+                    NavHostFragment.findNavController(this).navigate(R.id.action_nav_diseases_to_DiseaseDetails, bundle);
+                }
 
                 diseasesTable.addView(row);
             }
