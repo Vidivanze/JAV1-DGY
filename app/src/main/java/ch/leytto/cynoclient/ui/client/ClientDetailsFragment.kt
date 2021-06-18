@@ -57,7 +57,7 @@ class ClientDetailsFragment : Fragment() {
             // Phone is NOTNULL
             root.findViewById<TextView>(R.id.phone).text = c.phone;
 
-            if (c.street == null) {
+            if (c.street.isNullOrEmpty()) {
                 root.findViewById<TextView>(R.id.address).visibility = GONE;
             }
             else {
