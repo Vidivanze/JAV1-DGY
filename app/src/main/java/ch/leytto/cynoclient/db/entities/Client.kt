@@ -13,7 +13,7 @@ data class Client (
     @ColumnInfo(name = "email") val email: String?,
     @ColumnInfo(name = "phone") val phone: String,
     @ColumnInfo(name = "street") val street: String?,
-    @ColumnInfo(name = "id_locality") val idLocality: Int?
+    @ColumnInfo(name = "id_locality") val idLocality: Integer?
         ) {
 
 }

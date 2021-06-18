@@ -5,6 +5,7 @@ import ch.leytto.cynoclient.db.CynoClientRoomDatabase
 import ch.leytto.cynoclient.model.ClientRepository
 import ch.leytto.cynoclient.model.DogRepository
 import ch.leytto.cynoclient.model.DiseaseRepository
+import ch.leytto.cynoclient.model.LocalityRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -18,4 +19,5 @@ class CynoClientApplication: Application() {
     val clientRepository by lazy { ClientRepository(database.clientDao()) }
     val dogRepository by lazy { DogRepository(database.dogDao()) }
     val diseaseRepository by lazy { DiseaseRepository(database.diseaseDao()) }
+    val localityRepository by lazy { LocalityRepository(database.localityDao()) }
 }
