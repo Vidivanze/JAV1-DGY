@@ -42,6 +42,19 @@ class DiseaseDetailsFragment : Fragment() {
 
             root.findViewById<TextView>(R.id.noun).text = it.noun
 
+            root.findViewById<TextView>(R.id.description_header).text
+            root.findViewById<TextView>(R.id.description).text = it.description
+
+            root.findViewById<TextView>(R.id.symptoms_header).text
+            root.findViewById<TextView>(R.id.symptoms).text = it.symptoms
+
+            root.findViewById<TextView>(R.id.preventive_header).text
+            root.findViewById<TextView>(R.id.preventive).text = it.preventive
+
+            root.findViewById<TextView>(R.id.curative_header).text
+            root.findViewById<TextView>(R.id.curative).text = it.curative
+
+
         }
 
         return root;
