@@ -22,7 +22,7 @@ class DiseaseRepository(private val diseaseDao: DiseaseDao) : AbstractRepository
     // off the main thread.
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(disease: Disease) {
-        diseaseDao.insert(disease)
+    suspend fun insert(disease: Disease) : Long{
+        return diseaseDao.insert(disease)
     }
 }

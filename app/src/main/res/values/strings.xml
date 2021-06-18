@@ -16,6 +16,13 @@
     <string name="menu_dogs">Chiens</string>
     <string name="menu_diseases">Maladies</string>
     <string name="first_name">Prénom</string>
+    <string name="noun">Nom de la maladie</string>
+    <string name="description">Description</string>
+    <string name="symptoms">Symptomes</string>
+    <string name="preventive">Prévention</string>
+    <string name="curative">Curative</string>
+    <string name="vaccinable">Vaccinable</string>
+    <string name="zoonosis">Zoonose</string>
     <string name="last_name">Nom</string>
     <string name="contact_info">Contact</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -29,6 +36,8 @@
     <string name="menu_diseases_details">Détails de la maladie</string>
     <string name="menu_clients_new">Nouveau client</string>
     <string name="header_new_client">Nouveau client</string>
+    <string name="menu_diseases_new">Nouvelle maladie</string>
+    <string name="header_new_disease">Nouvelle maladie</string>
     <string name="female">Femme</string>
     <string name="male">Homme</string>
     <string name="header_gender">Genre</string>

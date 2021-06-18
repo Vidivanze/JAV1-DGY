@@ -11,8 +11,13 @@ class DiseaseViewModel(private val repository: DiseaseRepository) : ViewModel() 
 
     fun getDisease(id: String) : LiveData<Disease> = repository.find(id)
 
-    fun insert(disease: Disease) = viewModelScope.launch {
-        repository.insert(disease)
+    fun insert(disease: Disease) : LiveData<Long> {
+        val res = MutableLiveData<Long>()
+        viewModelScope.launch {
+            val r = repository.insert(disease)
+            res.postValue(r)
+        }
+        return res
     }
 
 }

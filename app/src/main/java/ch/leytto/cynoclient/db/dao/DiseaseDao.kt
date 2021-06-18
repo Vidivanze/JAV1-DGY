@@ -15,7 +15,7 @@ interface DiseaseDao {
     fun getDisease(id: String): LiveData<Disease>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(disease: Disease)
+    suspend fun insert(disease: Disease) : Long
 
     @Update
     suspend fun updateDiseases(vararg diseases: Disease)

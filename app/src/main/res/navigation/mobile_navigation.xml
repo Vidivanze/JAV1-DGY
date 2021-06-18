@@ -54,8 +54,10 @@
         <action
             android:id="@+id/action_nav_diseases_to_DiseaseDetails"
             app:destination="@id/diseaseDetails" />
+        <action
+            android:id="@+id/action_nav_diseases_to_diseaseNew"
+            app:destination="@id/diseaseNew" />
     </fragment>
-
     <fragment
         android:id="@+id/diseaseDetails"
         android:name="ch.leytto.cynoclient.ui.disease.DiseaseDetailsFragment"
@@ -67,4 +69,14 @@
             android:defaultValue=""
             />
     </fragment>
+    <fragment
+        android:id="@+id/diseaseNew"
+        android:name="ch.leytto.cynoclient.ui.disease.DiseaseNewFragment"
+        android:label="@string/menu_diseases_new"
+        tools:layout="@layout/fragment_disease_new" >
+        <action
+            android:id="@+id/action_diseaseNew_to_diseaseDetails"
+            app:destination="@id/diseaseDetails" />
+    </fragment>
+
 </navigation>
