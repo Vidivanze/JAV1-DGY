@@ -1,6 +1,7 @@
 package ch.leytto.cynoclient.ui.client
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,20 +11,28 @@ import android.widget.RadioButton
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.NavHostFragment
 import ch.leytto.cynoclient.CynoClientApplication
 import ch.leytto.cynoclient.R
 import ch.leytto.cynoclient.db.entities.Client
+import ch.leytto.cynoclient.db.entities.Locality
 import ch.leytto.cynoclient.viewmodels.ClientViewModel
+import ch.leytto.cynoclient.viewmodels.LocalityViewModel
 import ch.leytto.cynoclient.viewmodels.ViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.*
 
 
 class ClientNewFragment : Fragment() {
     private val clientViewModel: ClientViewModel by viewModels {
         ViewModelFactory((requireActivity().application as CynoClientApplication).clientRepository)
+    }
+
+    private val localityViewModel: LocalityViewModel by viewModels {
+        ViewModelFactory((requireActivity().application as CynoClientApplication).localityRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,24 +48,31 @@ class ClientNewFragment : Fragment() {
         val street: TextInputEditText = this.requireView().findViewById(R.id.street_input);
         val npa: TextInputEditText = this.requireView().findViewById((R.id.locality_input));
 
-        // TODO: FIND idLocality from npa
+        lifecycleScope.launch(Dispatchers.IO) {
+            var locId: Integer? = null;
+            if (!npa.text.isNullOrEmpty()) {
+                locId = Integer(localityViewModel.getLocalityByZip(npa.text.toString()).id)
+            }
 
-        val client: Client = Client(
-            firstname = firstname.text.toString(),
-            lastname = lastname.text.toString(),
-            female = fem.isChecked,
+            withContext(Dispatchers.Main) {
+                val client = Client(
+                    firstname = firstname.text.toString(),
+                    lastname = lastname.text.toString(),
+                    female = fem.isChecked,
 
-            email = email.text.toString(),
-            phone = phone.text.toString(),
-            street = street.text.toString(),
-            idLocality = 1,
+                    email = email.text.toString(),
+                    phone = phone.text.toString(),
+                    street = street.text.toString(),
+                    idLocality = locId,
 
-            id = 0
-        )
-        clientViewModel.insert(client).observe(viewLifecycleOwner) { id: Long ->
-            val bundle = bundleOf("ARG_CLIENT_ID" to id.toString())
-            NavHostFragment.findNavController(this)
-                .navigate(R.id.action_clientNew_to_clientDetails, bundle);
+                    id = 0
+                )
+                clientViewModel.insert(client).observe(viewLifecycleOwner) { id: Long ->
+                    val bundle = bundleOf("ARG_CLIENT_ID" to id.toString())
+                    NavHostFragment.findNavController(this@ClientNewFragment)
+                        .navigate(R.id.action_clientNew_to_clientDetails, bundle);
+                }
+            }
         }
     }
 
@@ -68,7 +84,7 @@ class ClientNewFragment : Fragment() {
 
         val fab: FloatingActionButton = root.findViewById(R.id.fab)
         fab.setOnClickListener {
-            run { this.save() }
+             kotlin.run { this.save() }
         }
 
         return root;
